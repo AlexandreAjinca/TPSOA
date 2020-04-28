@@ -36,7 +36,7 @@ namespace UserSDK
 
         public static User GetUser(string username)
         {
-            var rpcClient = new RPCClient();
+            var rpcClient = new RPCClient("user_queue");
             Console.WriteLine(" [x] Requesting {0}", username);
 
             string jsonString = rpcClient.Call(username);

@@ -8,7 +8,7 @@ namespace Client
 {
     public class RPCClient
     {
-        private const string QUEUE_NAME = "user_queue";
+        private string QUEUE_NAME;
 
         private readonly IConnection connection;
         private readonly IModel channel;
@@ -17,8 +17,9 @@ namespace Client
         private readonly BlockingCollection<string> respQueue = new BlockingCollection<string>();
         private readonly IBasicProperties props;
 
-        public RPCClient()
+        public RPCClient(string queueName)
         {
+            QUEUE_NAME = queueName;
             var factory = new ConnectionFactory() { HostName = "localhost" };
 
             connection = factory.CreateConnection();
@@ -69,13 +70,13 @@ namespace Client
     {
         public static void Main()
         {
-            var rpcClient = new RPCClient();
+            /*var rpcClient = new RPCClient();
 
             Console.WriteLine(" [x] Requesting fib(30)");
             var response = rpcClient.Call("30");
 
             Console.WriteLine(" [.] Got '{0}'", response);
-            rpcClient.Close();
+            rpcClient.Close();*/
         }
     }
 }
