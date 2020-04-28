@@ -37,7 +37,7 @@ namespace StockManager
                         var message = Encoding.UTF8.GetString(body.ToArray());
                         Console.WriteLine(" [.] Checking username:{0}", message);
                         //response = fib(message).ToString();
-                        getProduct();
+                        //getProduct();
                     }
                     catch (Exception e)
                     {

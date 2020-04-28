@@ -8,7 +8,7 @@ using System.Text;
 
 namespace StockSDK
 {
-    class StockManager
+    public class StockManager
     {
         public static ItemLine ReserveItem(string name, int quantity)
         {
@@ -31,12 +31,7 @@ namespace StockSDK
                 }
                 count++;
             }
-            //On diminue les stocks du montant indiqué
-            string fileText = File.ReadAllText("settings.json");
-            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(fileText);
-            jsonObj["Product"][count]["quantité"] = Int32.Parse(jsonObj["Product"][count]["quantité"]) - quantity;
-            string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-            File.WriteAllText("product.json", output);
+            obj["product"][count]["quantite"] = (int)obj["product"][count]["quantite"] - quantity;
 
             return il;
         }
@@ -58,11 +53,8 @@ namespace StockSDK
                 count++;
             }
             //On augmente les stocks du montant indiqué
-            string fileText = File.ReadAllText("settings.json");
-            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(fileText);
-            jsonObj["Product"][count]["quantité"] = Int32.Parse(jsonObj["Product"][count]["quantité"]) + line.getQuantite();
-            string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-            File.WriteAllText("product.json", output);
+            obj["product"][count]["quantite"] = (int)obj["product"][count]["quantite"] + line.getQuantite();
+
         }
 
     }
