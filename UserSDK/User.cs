@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Client;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
@@ -33,25 +34,27 @@ namespace UserSDK
         public void setUsername(string username) { m_username = username; }
         public string getUsername() { return m_username; }
 
-        static User GetUser(string username)
+        public static User GetUser(string username)
         {
-            User user = new User();
+            var rpcClient = new RPCClient();
+            Console.WriteLine(" [x] Requesting {0}", username);
 
-            StreamReader file = new StreamReader("users.json", true);
-            String json = file.ReadToEnd();
-            var obj = JObject.Parse(json);
-            //On parcours le JSON pour trouver l'utilisateur correspondant au username
-            foreach (JObject element in obj["users"])
-            {
-                string n = element["username"].ToString();
-                if (username == n)
-                {
-                    user.setPrenom(element["prenom"].ToString());
-                    user.setNom(element["nom"].ToString());
-                    user.setEmail(element["email"].ToString());
-                    user.setUsername(element["username"].ToString());
-                }
+            string jsonString = rpcClient.Call(username);
+            Console.WriteLine(" [.] Got '{0}'", jsonString);
+
+            if (jsonString == null) {
+                rpcClient.Close();
+                return null;
             }
+            JObject userJson = JObject.Parse(jsonString);
+
+            User user = new User();
+            user.setPrenom(userJson["prenom"].ToString());
+            user.setNom(userJson["nom"].ToString());
+            user.setEmail(userJson["email"].ToString());
+            user.setUsername(userJson["username"].ToString());
+
+            rpcClient.Close();
             return user;
         }
 

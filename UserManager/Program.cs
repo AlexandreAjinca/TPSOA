@@ -59,20 +59,18 @@ namespace UserManager
         {
             StreamReader file = new StreamReader("users.json", true);
             String json = file.ReadToEnd();
-            string identite = username;
             var obj = JObject.Parse(json);
             foreach (JObject element in obj["users"])
             {
                 string n = element["username"].ToString();
                 if (n == username)
                 {
-                    username = element["prenom"].ToString() + " " + element["nom"].ToString();
+                    file.Close();
+                    return element.ToString();
                 }
             }
-            if (identite != username)
-                return username;
-            else
-                return "Username (" + identite + ") non reconnu";
+            file.Close();
+            return null;
         }
     }
 }
