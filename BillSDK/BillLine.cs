@@ -26,7 +26,7 @@ namespace BillSDK
         public Item getItem() { return m_item; }
         public void setQuantite(int quantite) { m_quantite = quantite; }
         public int getQuantite() { return m_quantite; }
-        public void setNom(double sousTotal) { m_sousTotal = sousTotal; }
-        public double getNom() { return m_sousTotal; }
+        public void setSousTotal(double sousTotal) { m_sousTotal = sousTotal; }
+        public double getSousTotal() { return m_sousTotal; }
     }
 }
