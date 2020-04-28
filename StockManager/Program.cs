@@ -36,8 +36,7 @@ namespace StockManager
                     {
                         var message = Encoding.UTF8.GetString(body.ToArray());
                         Console.WriteLine(" [.] Checking username:{0}", message);
-                        //response = fib(message).ToString();
-                        //getProduct();
+                        response = getAllProducts();
                     }
                     catch (Exception e)
                     {
@@ -61,15 +60,17 @@ namespace StockManager
         /// Assumes only valid positive integer input.
         /// Don't expect this one to work for big numbers, and it's probably the slowest recursive implementation possible.
         /// </summary>
-        public static void getAllProducts()
+        public static string getAllProducts()
         {
             StreamReader file = new StreamReader("product.json", true);
             String json = file.ReadToEnd();
+            string recup = " NOS PRODUITS ";
             var obj = JObject.Parse(json);
             foreach (JObject element in obj["product"])
             {
-                Console.WriteLine(element["nom"] + "  " + element["prix (hors taxe)"]);
+                recup = recup + "\n" + element["nom"] + "  " + element["prix"] ;
             }
+            return recup;
         }
 
         
