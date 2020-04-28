@@ -42,7 +42,8 @@ namespace UserSDK
             string jsonString = rpcClient.Call(username);
             Console.WriteLine(" [.] Got '{0}'", jsonString);
 
-            if (jsonString == null) {
+            if (jsonString == "null") {
+                Console.WriteLine("Cet utilisateur n'existe pas");
                 rpcClient.Close();
                 return null;
             }
@@ -51,10 +52,11 @@ namespace UserSDK
             User user = new User();
             user.setPrenom(userJson["prenom"].ToString());
             user.setNom(userJson["nom"].ToString());
-            user.setEmail(userJson["email"].ToString());
+            user.setEmail(userJson["mail"].ToString());
             user.setUsername(userJson["username"].ToString());
 
             rpcClient.Close();
+            Console.WriteLine("Connection réussie, bienvenue " + user.getUsername());
             return user;
         }
 

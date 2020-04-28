@@ -47,6 +47,7 @@ namespace UserManager
                         var responseBytes = Encoding.UTF8.GetBytes(response);
                         channel.BasicPublish(exchange: "", routingKey: props.ReplyTo, basicProperties: replyProps, body: responseBytes);
                         channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                        Console.WriteLine(" [.] Response sent to client");
                     }
                 };
 
@@ -70,7 +71,7 @@ namespace UserManager
                 }
             }
             file.Close();
-            return null;
+            return "null";
         }
     }
 }
