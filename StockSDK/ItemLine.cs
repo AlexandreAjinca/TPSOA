@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StockSDK
 {
-    class ItemLine
+    public class ItemLine
     {
         Item m_item;
         int m_quantite;

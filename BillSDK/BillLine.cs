@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BillSDK
 {
-    class BillLine
+    public class BillLine
     {
         Item m_item;
         int m_quantite;

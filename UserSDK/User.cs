@@ -31,7 +31,7 @@ namespace UserSDK
         public void setEmail(string email) { m_email = email; }
         public string getEmail() { return m_email; }
         public void setUsername(string username) { m_username = username; }
-        public string getUsernae() { return m_username; }
+        public string getUsername() { return m_username; }
 
         static User GetUser(string username)
         {
@@ -49,6 +49,7 @@ namespace UserSDK
                     user.setPrenom(element["prenom"].ToString());
                     user.setNom(element["nom"].ToString());
                     user.setEmail(element["email"].ToString());
+                    user.setUsername(element["username"].ToString());
                 }
             }
             return user;
