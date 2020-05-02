@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Client;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -10,10 +12,31 @@ namespace StockSDK
 {
     public class StockManager
     {
-        public static ItemLine ReserveItem(string name, int quantity)
+        public static ItemLine ReserveItem(string itemName, int quantity)
         {
+
+            Console.WriteLine("Product requests : ");
+            var rpcClient = new RPCClient("stock_queue");
+            Console.WriteLine(" [x] Requesting {0}", itemName);
+
+            string jsonString = rpcClient.Call(itemName);
+            Console.WriteLine(" [.] Got '{0}'", jsonString);
+
+            if (jsonString == "null")
+            {
+                Console.WriteLine("Cet objet n'existe pas");
+                rpcClient.Close();
+                return null;
+            }
+
+            JObject itemJson = JObject.Parse(jsonString);
             ItemLine il = new ItemLine();
-            StreamReader file = new StreamReader("product.json", true);
+            Item item = new Item(itemName, double.Parse(itemJson["prix"].ToString(), CultureInfo.InvariantCulture));
+            int lineQuantity = Int32.Parse(itemJson["quantité"].ToString());
+            il.setItem(item);
+            il.setQuantite(lineQuantity);
+
+            StreamReader file = new StreamReader("C:\\Users\\aajin\\source\\repos\\TPSOA\\StockManager\\product.json", true);
             String json = file.ReadToEnd();
             var obj = JObject.Parse(json);
             int count = 0;
@@ -21,24 +44,22 @@ namespace StockSDK
             foreach (JObject element in obj["product"])
             {
                 string n = element["nom"].ToString();
-                if (name == n)
+                if (itemName == n)
                 {
-                    Item item = new Item(name, Double.Parse(element["prix"].ToString()));
-                    int lineQuantity = Int32.Parse(element["quantité"].ToString());
-                    il.setItem(item);
-                    il.setQuantite(lineQuantity);
                     break;
                 }
                 count++;
             }
-            obj["product"][count]["quantite"] = (int)obj["product"][count]["quantite"] - quantity;
+            obj["product"][count]["quantité"] = (int)obj["product"][count]["quantité"] - quantity;
+            file.Close();
 
+            File.WriteAllText("C:\\Users\\aajin\\source\\repos\\TPSOA\\StockManager\\product.json", obj.ToString());
             return il;
         }
 
         public static void ReleaseItem(ItemLine line)
         {
-            StreamReader file = new StreamReader("product.json", true);
+            StreamReader file = new StreamReader("C:\\Users\\aajin\\source\\repos\\TPSOA\\StockManager\\product.json", true);
             String json = file.ReadToEnd();
             var obj = JObject.Parse(json);
             int count = 0;
@@ -52,10 +73,10 @@ namespace StockSDK
                 }
                 count++;
             }
-            //On augmente les stocks du montant indiqué
-            obj["product"][count]["quantite"] = (int)obj["product"][count]["quantite"] + line.getQuantite();
-
+            file.Close();
+            //On diminue les stocks du montant indiqué
+            obj["product"][count]["quantité"] = (int)obj["product"][count]["quantité"] + line.getQuantite();
+            File.WriteAllText("C:\\Users\\aajin\\source\\repos\\TPSOA\\StockManager\\product.json", obj.ToString());
         }
-
     }
 }

@@ -22,6 +22,12 @@ namespace BillSDK
             m_sousTotal = sousTotal;
         }
 
+        public override string ToString()
+        {
+            string result = m_item.ToString() + ", quantite : " + m_quantite + ", sous-total : " + m_sousTotal;
+            return result;
+        }
+
         public void setItem(Item item) { m_item = item; }
         public Item getItem() { return m_item; }
         public void setQuantite(int quantite) { m_quantite = quantite; }

@@ -24,7 +24,11 @@ namespace UserSDK
             m_email = email;
             m_username = username;
         }
-
+        public override string ToString()
+        {
+            string result = "Nom : " + m_nom + ", Prénom : " + m_prenom  + ", Username : " + m_username + ", Email : " + m_email;
+            return result;
+        }
         public void setNom(string nom){ m_nom = nom; }
         public string getNom(){ return m_nom; }
         public void setPrenom(string prenom) { m_prenom = prenom; }
@@ -36,6 +40,7 @@ namespace UserSDK
 
         public static User GetUser(string username)
         {
+            Console.WriteLine("User requests : ");
             var rpcClient = new RPCClient("user_queue");
             Console.WriteLine(" [x] Requesting {0}", username);
 

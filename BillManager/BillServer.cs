@@ -2,10 +2,11 @@
 
 namespace BillManager
 {
-    class Program
+    class BillServer
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello World!");
         }
     }

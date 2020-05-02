@@ -6,21 +6,21 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Linq;
-
-namespace StockManager
+namespace UserManager
 {
-    class Program
+    class UserServer
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("User server: ");
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "stock_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: "user_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
                 channel.BasicQos(0, 1, false);
                 var consumer = new EventingBasicConsumer(channel);
-                channel.BasicConsume(queue: "stock_queue", autoAck: false, consumer: consumer);
+                channel.BasicConsume(queue: "user_queue", autoAck: false, consumer: consumer);
                 Console.WriteLine(" [x] Awaiting RPC requests");
 
                 consumer.Received += (model, ea) =>
@@ -36,7 +36,7 @@ namespace StockManager
                     {
                         var message = Encoding.UTF8.GetString(body.ToArray());
                         Console.WriteLine(" [.] Checking username:{0}", message);
-                        response = getAllProducts();
+                        response = getUser(message);
                     }
                     catch (Exception e)
                     {
@@ -48,6 +48,7 @@ namespace StockManager
                         var responseBytes = Encoding.UTF8.GetBytes(response);
                         channel.BasicPublish(exchange: "", routingKey: props.ReplyTo, basicProperties: replyProps, body: responseBytes);
                         channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                        Console.WriteLine(" [.] Response sent to client");
                     }
                 };
 
@@ -56,23 +57,22 @@ namespace StockManager
             }
         }
 
-        /// <summary>
-        /// Assumes only valid positive integer input.
-        /// Don't expect this one to work for big numbers, and it's probably the slowest recursive implementation possible.
-        /// </summary>
-        public static string getAllProducts()
+        public static string getUser(string username)
         {
-            StreamReader file = new StreamReader("product.json", true);
+            StreamReader file = new StreamReader("users.json", true);
             String json = file.ReadToEnd();
-            string recup = " NOS PRODUITS ";
             var obj = JObject.Parse(json);
-            foreach (JObject element in obj["product"])
+            foreach (JObject element in obj["users"])
             {
-                recup = recup + "\n" + element["nom"] + "  " + element["prix"] ;
+                string n = element["username"].ToString();
+                if (n == username)
+                {
+                    file.Close();
+                    return element.ToString();
+                }
             }
-            return recup;
+            file.Close();
+            return "null";
         }
-
-        
     }
 }

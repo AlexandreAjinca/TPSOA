@@ -18,6 +18,12 @@ namespace StockSDK
             m_item = item;
             m_quantite = quantite;
         }
+
+        public override string ToString()
+        {
+            string result = m_item.ToString() + ", " + m_quantite.ToString() + " exemplaires.";
+            return result;
+        }
         public Item getItem() { return m_item; }
         public int getQuantite() { return m_quantite; }
         public void setItem(Item item){m_item = item;}

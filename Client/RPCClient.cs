@@ -50,7 +50,7 @@ namespace Client
                 exchange: "",
                 routingKey: QUEUE_NAME,
                 basicProperties: props,
-                body: messageBytes);
+                body:messageBytes);
 
             channel.BasicConsume(
                 consumer: consumer,
@@ -66,17 +66,4 @@ namespace Client
         }
     }
 
-    public class Rpc
-    {
-        public static void Main()
-        {
-            /*var rpcClient = new RPCClient();
-
-            Console.WriteLine(" [x] Requesting fib(30)");
-            var response = rpcClient.Call("30");
-
-            Console.WriteLine(" [.] Got '{0}'", response);
-            rpcClient.Close();*/
-        }
-    }
 }

@@ -1,52 +1,149 @@
-{ "product":
-	[{"nom":"Cheese - Valancey","prix":"30.76","quantité":16},
-{"nom":"Eggplant - Baby","prix":"14.19","quantité":93},
-{"nom":"Pie Filling - Pumpkin","prix":"65.67","quantité":92},
-{"nom":"Melon - Cantaloupe","prix":"52.85","quantité":70},
-{"nom":"Bacardi Raspberry","prix":"45.70","quantité":16},
-{"nom":"Ecolab - Hand Soap Form Antibac","prix":"11.59","quantité":8},
-{"nom":"Flour - Rye","prix":"22.37","quantité":39},
-{"nom":"Sausage - Blood Pudding","prix":"27.12","quantité":1},
-{"nom":"Barley - Pearl","prix":"65.35","quantité":44},
-{"nom":"Pepper - Black, Ground","prix":"26.67","quantité":92},
-{"nom":"Hinge W Undercut","prix":"31.53","quantité":55},
-{"nom":"Cookies - Assorted","prix":"59.75","quantité":96},
-{"nom":"Onions - Vidalia","prix":"61.19","quantité":67},
-{"nom":"Shortbread - Cookie Crumbs","prix":"55.30","quantité":25},
-{"nom":"Tea - Honey Green Tea","prix":"2.08","quantité":8},
-{"nom":"Iced Tea Concentrate","prix":"25.95","quantité":19},
-{"nom":"Pasta - Cappellini, Dry","prix":"23.49","quantité":73},
-{"nom":"Wine - Guy Sage Touraine","prix":"23.62","quantité":32},
-{"nom":"Wine - Red, Metus Rose","prix":"60.35","quantité":7},
-{"nom":"Island Oasis - Strawberry","prix":"28.50","quantité":13},
-{"nom":"Scallops 60/80 Iqf","prix":"2.74","quantité":18},
-{"nom":"Cake Slab","prix":"8.11","quantité":38},
-{"nom":"Coconut - Creamed, Pure","prix":"60.68","quantité":94},
-{"nom":"Spice - Paprika","prix":"22.53","quantité":96},
-{"nom":"Chocolate - Dark Callets","prix":"67.61","quantité":23},
-{"nom":"Lid - 3oz Med Rec","prix":"31.58","quantité":4},
-{"nom":"Wine - Segura Viudas Aria Brut","prix":"12.52","quantité":32},
-{"nom":"Cocoa Butter","prix":"47.73","quantité":49},
-{"nom":"Chestnuts - Whole,canned","prix":"29.91","quantité":44},
-{"nom":"Lamb - Racks, Frenched","prix":"64.12","quantité":55},
-{"nom":"Wine - Red, Gallo, Merlot","prix":"4.62","quantité":7},
-{"nom":"Veal - Loin","prix":"63.76","quantité":96},
-{"nom":"Clams - Littleneck, Whole","prix":"46.13","quantité":1},
-{"nom":"Eggroll","prix":"14.77","quantité":32},
-{"nom":"Tandoori Curry Paste","prix":"3.88","quantité":69},
-{"nom":"Ranchero - Primerba, Paste","prix":"52.20","quantité":4},
-{"nom":"Cleaner - Bleach","prix":"9.64","quantité":41},
-{"nom":"Veal - Chops, Split, Frenched","prix":"0.29","quantité":13},
-{"nom":"Fond - Chocolate","prix":"33.27","quantité":88},
-{"nom":"Turkey - Whole, Fresh","prix":"39.19","quantité":65},
-{"nom":"Carbonated Water - Peach","prix":"68.43","quantité":11},
-{"nom":"Schnappes - Peach, Walkers","prix":"25.89","quantité":66},
-{"nom":"Coffee - 10oz Cup 92961","prix":"42.01","quantité":67},
-{"nom":"Spice - Montreal Steak Spice","prix":"1.81","quantité":57},
-{"nom":"Wine - Conde De Valdemar","prix":"40.59","quantité":90},
-{"nom":"Hickory Smoke, Liquid","prix":"55.96","quantité":60},
-{"nom":"Seabream Whole Farmed","prix":"26.41","quantité":86},
-{"nom":"Pork - Side Ribs","prix":"59.71","quantité":66},
-{"nom":"Shrimp - Prawn","prix":"25.75","quantité":23},
-{"nom":"Muffin Mix - Oatmeal","prix":"41.99","quantité":38}]
+{
+  "product": [
+    {
+      "nom": "Cheese",
+      "prix": "30.76",
+      "quantité": 11
+    },
+    {
+      "nom": "Eggplant",
+      "prix": "14.19",
+      "quantité": 87
+    },
+    {
+      "nom": "Pie Filling",
+      "prix": "65.67",
+      "quantité": 92
+    },
+    {
+      "nom": "Melon",
+      "prix": "52.85",
+      "quantité": 70
+    },
+    {
+      "nom": "Bacardi Raspberry",
+      "prix": "45.70",
+      "quantité": 16
+    },
+    {
+      "nom": "Ecolab",
+      "prix": "11.59",
+      "quantité": 8
+    },
+    {
+      "nom": "Flour",
+      "prix": "22.37",
+      "quantité": 39
+    },
+    {
+      "nom": "Sausage",
+      "prix": "27.12",
+      "quantité": 1
+    },
+    {
+      "nom": "Barley",
+      "prix": "65.35",
+      "quantité": 44
+    },
+    {
+      "nom": "Pepper",
+      "prix": "26.67",
+      "quantité": 92
+    },
+    {
+      "nom": "Hinge W Undercut",
+      "prix": "31.53",
+      "quantité": 55
+    },
+    {
+      "nom": "Cookies",
+      "prix": "59.75",
+      "quantité": 96
+    },
+    {
+      "nom": "Onions",
+      "prix": "61.19",
+      "quantité": 67
+    },
+    {
+      "nom": "Shortbread",
+      "prix": "55.30",
+      "quantité": 25
+    },
+    {
+      "nom": "Tea",
+      "prix": "2.08",
+      "quantité": 8
+    },
+    {
+      "nom": "Iced Tea Concentrate",
+      "prix": "25.95",
+      "quantité": 19
+    },
+    {
+      "nom": "Pasta",
+      "prix": "23.49",
+      "quantité": 73
+    },
+    {
+      "nom": "Wine",
+      "prix": "23.62",
+      "quantité": 32
+    },
+    {
+      "nom": "Wine",
+      "prix": "60.35",
+      "quantité": 7
+    },
+    {
+      "nom": "Island Oasis",
+      "prix": "28.50",
+      "quantité": 13
+    },
+    {
+      "nom": "Scallops",
+      "prix": "2.74",
+      "quantité": 18
+    },
+    {
+      "nom": "Cake Slab",
+      "prix": "8.11",
+      "quantité": 38
+    },
+    {
+      "nom": "Coconut",
+      "prix": "60.68",
+      "quantité": 94
+    },
+    {
+      "nom": "Paprika",
+      "prix": "22.53",
+      "quantité": 96
+    },
+    {
+      "nom": "Chocolate",
+      "prix": "67.61",
+      "quantité": 23
+    },
+    {
+      "nom": "Lid",
+      "prix": "31.58",
+      "quantité": 4
+    },
+    {
+      "nom": "Wine",
+      "prix": "12.52",
+      "quantité": 32
+    },
+    {
+      "nom": "Cocoa Butter",
+      "prix": "47.73",
+      "quantité": 49
+    },
+    {
+      "nom": "Chestnuts",
+      "prix": "29.91",
+      "quantité": 44
+    }
+  ]
 }
